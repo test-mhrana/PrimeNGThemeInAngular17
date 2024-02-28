@@ -36,6 +36,6 @@ export class AppTopBarComponent {
   }
 
   getLogoWidth(): number {
-    return 243 + ((14 - parseInt(this.layoutService.config().scale.toFixed())) * 3);
+    return 245 + ((14 - parseInt(this.layoutService.config().scale.toFixed())) * 3);
   }
 }

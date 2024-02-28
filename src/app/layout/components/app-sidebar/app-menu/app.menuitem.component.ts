@@ -24,7 +24,9 @@ import {AppMenuService} from "../../../services/app-menu.service";
            [ngClass]="item.class" [attr.target]="item.target" tabindex="0" pRipple>
           <i [ngClass]="item.icon" class="layout-menuitem-icon"></i>
           <span class="layout-menuitem-text">{{ item.label }}</span>
-          <i class="pi pi-fw pi-angle-down layout-submenu-toggler" *ngIf="item.items"></i>
+          @if (item.items) {
+            <i class="pi pi-fw pi-angle-down layout-submenu-toggler"></i>
+          }
         </a>
       }
 
@@ -40,13 +42,15 @@ import {AppMenuService} from "../../../services/app-menu.service";
            [attr.target]="item.target" tabindex="0" pRipple>
           <i [ngClass]="item.icon" class="layout-menuitem-icon"></i>
           <span class="layout-menuitem-text">{{ item.label }}</span>
-          <i class="pi pi-fw pi-angle-down layout-submenu-toggler" *ngIf="item.items"></i>
+          @if (item.items) {
+            <i class="pi pi-fw pi-angle-down layout-submenu-toggler"></i>
+          }
         </a>
       }
 
       @if (item.items && item.visible !== false) {
         <ul [@children]="submenuAnimation">
-          @for (child of item.items; track child.type; let i = $index) {
+          @for (child of item.items; track child.label; let i = $index) {
             <li app-menuitem [item]="child" [index]="i" [parentKey]="key" [class]="child.badgeClass"></li>
           }
         </ul>
